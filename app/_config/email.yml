@@ -1,0 +1,16 @@
+---
+Name: appemailconfig
+After:
+  - '#emailconfig'
+Only:
+  environment: 'dev'
+---
+SilverStripe\Core\Injector\Injector:
+  Swift_Transport:
+    class: Swift_SmtpTransport
+    properties:
+      Host: mailhog
+      Port: 1025
+    calls:
+      Username: [ setUsername, ['admin'] ]
+      Password: [ setPassword, ['admin'] ]
